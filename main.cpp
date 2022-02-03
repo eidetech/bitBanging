@@ -1,7 +1,5 @@
 #include <iostream>
 
-using namespace std;
-
 int main()
 {
 uint32_t canMessage[8];
