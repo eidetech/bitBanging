@@ -1,4 +1,7 @@
-# Bit banging, variable conversion and decimal to binary operations
+# Variable conversion and decimal to binary operations
+
+### Backstory
+When working with CAN messages, it is necessary to know how to convert float variables to integer values, and decimal numbers to binary. This repository contains some example code on how this can be done.
 
 ### Theory
 #### CAN bus datafield
