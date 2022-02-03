@@ -19,13 +19,13 @@ uint32_t outData[8];
     }
 
     // Combining each whole number into
-    canMessage[0] = outData[0];       //  1 byte
-    canMessage[1] = outData[0] >> 8;  //  1 byte
-    canMessage[2] = outData[0] >> 16; //= 3/8 bytes total
+    canMessage[0] = outData[0];       //  1/8 bytes
+    canMessage[1] = outData[0] >> 8;  //  2/8 bytes
+    canMessage[2] = outData[0] >> 16; //  3/8 bytes
 
-    canMessage[4] = outData[1];       //  4 byte
-    canMessage[5] = outData[1] >> 8;  //  5 byte
-    canMessage[6] = outData[1] >> 16; //= 6/8 bytes total
+    canMessage[4] = outData[1];       //  4/8 bytes
+    canMessage[5] = outData[1] >> 8;  //  5/8 bytes
+    canMessage[6] = outData[1] >> 16; //  6/8 bytes
 
     // RECEIVING
     std::cout << "Receiving" << std::endl;
@@ -34,10 +34,11 @@ uint32_t outData[8];
     uint32_t receive_2 = 0;
     receive_1 = (canMessage[0]) | canMessage[1]<<8 | canMessage[2]<<16;
     receive_2 = (canMessage[4]) | canMessage[5]<<8 | canMessage[6]<<16;
+    // Could go on decoding the received messages, but this proves that it works.
 
+    // Printing the combined output for each received variable.
     std::cout << receive_1 << std::endl;
     std::cout << receive_2 << std::endl;
-
 
     // Testing coding and decoding the biggest possible number that can be sent in one CAN message.
     uint64_t bigNum = 4294967296;
@@ -46,14 +47,14 @@ uint32_t outData[8];
     std::cout <<  "Coding:   ";
     std::cout << bigNum << std::endl;
     // CODING CAN message
-    canMessage_2[0] = bigNum;       //  1 byte
-    canMessage_2[1] = bigNum >> 8;  //  1 byte
-    canMessage_2[2] = bigNum >> 16; //  1 byte
-    canMessage_2[3] = bigNum >> 24; //  1 byte
-    canMessage_2[4] = bigNum >> 32; //  1 byte
-    canMessage_2[5] = bigNum >> 40; //  1 byte
-    canMessage_2[6] = bigNum >> 48; //  1 byte
-    canMessage_2[7] = bigNum >> 56; //  1 byte, = 8 bytes total
+    canMessage_2[0] = bigNum;       //  1/8 bytes
+    canMessage_2[1] = bigNum >> 8;  //  2/8 bytes
+    canMessage_2[2] = bigNum >> 16; //  3/8 bytes
+    canMessage_2[3] = bigNum >> 24; //  4/8 bytes
+    canMessage_2[4] = bigNum >> 32; //  5/8 bytes
+    canMessage_2[5] = bigNum >> 40; //  6/8 bytes
+    canMessage_2[6] = bigNum >> 48; //  7/8 bytes
+    canMessage_2[7] = bigNum >> 56; //  8/8 bytes
 
     std::cout <<  "Decoding: ";
     // DECODING CAN message
