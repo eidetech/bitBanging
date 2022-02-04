@@ -16,32 +16,32 @@ As stated above, a CAN bus message can store up to 8 bytes. Since every byte con
 Code example of coding and decoding 64 bits to (decimal->binary->decimal):
 
     // Testing coding and decoding the biggest possible number that can be sent in one CAN message.
-    uint64_t bigNum = 4294967296;
-    uint64_t canMessage[8];
+    uint64_t bigNum = pow(2,64); // 0 through 18446744073709551615 (2^64 − 1). NOT 18446744073709551616!
+    uint64_t canMessage_2[8];
 
     std::cout <<  "Coding:   ";
     std::cout << bigNum << std::endl;
     // CODING CAN message
-    canMessage[0] = bigNum;       //  1 byte
-    canMessage[1] = bigNum >> 8;  //  1 byte
-    canMessage[2] = bigNum >> 16; //  1 byte
-    canMessage[3] = bigNum >> 24; //  1 byte
-    canMessage[4] = bigNum >> 32; //  1 byte
-    canMessage[5] = bigNum >> 40; //  1 byte
-    canMessage[6] = bigNum >> 48; //  1 byte
-    canMessage[7] = bigNum >> 56; //  1 byte, = 8 bytes total
+    canMessage_2[0] = bigNum;       //  1/8 bytes
+    canMessage_2[1] = bigNum >> 8;  //  2/8 bytes
+    canMessage_2[2] = bigNum >> 16; //  3/8 bytes
+    canMessage_2[3] = bigNum >> 24; //  4/8 bytes
+    canMessage_2[4] = bigNum >> 32; //  5/8 bytes
+    canMessage_2[5] = bigNum >> 40; //  6/8 bytes
+    canMessage_2[6] = bigNum >> 48; //  7/8 bytes
+    canMessage_2[7] = bigNum >> 56; //  8/8 bytes
 
     std::cout <<  "Decoding: ";
     // DECODING CAN message
-    uint64_t receiveCanMessage =  canMessage[0]
-                                | canMessage[1]<<8
-                                | canMessage[2]<<16
-                                | canMessage[3]<<24
-                                | canMessage[4]<<32
-                                | canMessage[5]<<40
-                                | canMessage[6]<<48
-                                | canMessage[7]<<56;
-                        
+    uint64_t receiveCanMessage =  canMessage_2[0]
+                                | canMessage_2[1]<<8
+                                | canMessage_2[2]<<16
+                                | canMessage_2[3]<<24
+                                | canMessage_2[4]<<32
+                                | canMessage_2[5]<<40
+                                | canMessage_2[6]<<48
+                                | canMessage_2[7]<<56;
+
     // Print out combined output
     std::cout << receiveCanMessage << std::endl;
   
