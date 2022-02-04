@@ -1,4 +1,6 @@
+
 #include <iostream>
+#include <math.h>
 
 int main()
 {
@@ -41,7 +43,7 @@ uint32_t outData[8];
     std::cout << receive_2 << std::endl;
 
     // Testing coding and decoding the biggest possible number that can be sent in one CAN message.
-    uint64_t bigNum = 4294967296;
+    uint64_t bigNum = pow(2,64); // 0 through 18446744073709551615 (2^64 − 1). NOT 18446744073709551616!
     uint64_t canMessage_2[8];
 
     std::cout <<  "Coding:   ";
