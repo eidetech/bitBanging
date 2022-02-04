@@ -13,7 +13,7 @@ The size of the number one wish to send predicts the number of bytes that is req
 
 #### CAN bus messages
 As stated above, a CAN bus message can store up to 8 bytes. Since every byte consists of 8 bits, the message can store up to 8x8 = 64 bits in total.
-Code example of coding and decoding 64 bits to (decimal->binary->decimal):
+Code example of coding and decoding 64 bits to (decimal->binary->decimal). Please note that 2^64 is 18446744073709551616, but the uint64 variable goes from 0 through 18446744073709551615:
 
     // Testing coding and decoding the biggest possible number that can be sent in one CAN message.
     uint64_t bigNum = pow(2,64); // 0 through 18446744073709551615 (2^64 − 1). NOT 18446744073709551616!
@@ -47,5 +47,5 @@ Code example of coding and decoding 64 bits to (decimal->binary->decimal):
   
 The code above should output the following:
 
-    Coding:   4294967296
-    Decoding: 4294967296
+    Coding:   18446744073709551615
+    Decoding: 18446744073709551615
